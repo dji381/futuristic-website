@@ -1,0 +1,11 @@
+Model Information:
+* title:	Robo Bun
+* source:	https://sketchfab.com/3d-models/robo-bun-88b7c991fb1f40fd87af4141c923fecb
+* author:	futaba@blender (https://sketchfab.com/futaba_blender)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Robo Bun" (https://sketchfab.com/3d-models/robo-bun-88b7c991fb1f40fd87af4141c923fecb) by futaba@blender (https://sketchfab.com/futaba_blender) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
