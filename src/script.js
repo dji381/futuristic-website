@@ -1,51 +1,6 @@
 import * as THREE from 'three'
 import GUI from 'lil-gui'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-/**
- * GSAP
- */
-gsap.registerPlugin(ScrollTrigger);
-// Create the ScrollTrigger
-ScrollTrigger.create({
-    trigger: ".about-container",
-    start: "top top",
-    onEnter: () => {
-        gsap.set(".webgl", {
-            position: "absolute",
-            top: "0px",
-            left: "0px"
-        });
-    },
-    onLeaveBack: () => {
-        gsap.set(".webgl", {
-            position: "fixed",
-            top: "10px",
-            left: "10px"
-        });
-    }
-});
- // Split text into words and wrap each word in a span
- const text = document.querySelector('.about-paralax p');
- text.innerHTML = text.textContent.split(' ').map(word => `<span>${word}</span>`).join(' ');
-
- // Create the ScrollTrigger
- gsap.fromTo(".about-paralax span", 
-     { opacity: 0 }, 
-     { 
-         opacity: 1, 
-         duration: 1, 
-         stagger: 0.1, 
-         scrollTrigger: {
-             trigger: ".about-paralax",
-             start: "top 80%",
-             end: "top top",
-             scrub: true
-         }
-     }
- );
 
 /**
  * Debug
@@ -68,16 +23,23 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-//helper
-const axesHelper = new THREE.AxesHelper( 5 );
-scene.add( axesHelper );
+/**
+ * Model
+ */
 //Load Model
+
+let mixer;
+let model;
 const gltfLoader = new GLTFLoader()
 gltfLoader.load('/models/robot/scene.gltf',(gltf)=>{
     console.log(gltf)
     gltf.scene.rotation.y = Math.PI * 0.15
     gltf.scene.position.x = 0.5
     scene.add(gltf.scene)
+    model = gltf.scene
+    mixer = new THREE.AnimationMixer(gltf.scene);
+    const action = mixer.clipAction(gltf.animations[0])
+    action.play();
 })
 
 /**
@@ -91,9 +53,6 @@ scene.add(ambientLight)
 const directionalLight = new THREE.DirectionalLight(0xffffff,5);
 scene.add(directionalLight)
 
-//light helper
-const directionalLightHelper = new THREE.DirectionalLightHelper( directionalLight, 5 );
-scene.add( directionalLightHelper );
 const directionalLightParameters = { 
     x: 0,
     y: -2,
@@ -212,22 +171,36 @@ let scrollY = window.scrollY
 window.addEventListener('scroll',()=>{
     scrollY = window.scrollY
 })
+//parallax
+const cursor = {
+
+}
+window.addEventListener('mousemove',(e)=>{
+    cursor.x = e.clientX / sizes.width - 0.5
+    cursor.y = e.clientY / sizes.height - 0.5
+})
 /**
  * Animate
  */
-const clock = new THREE.Clock()
-
-const tick = () =>
+let previousTime = 0;
+const render = (time) =>
 {
-    const elapsedTime = clock.getElapsedTime()
-
+   
+    const deltaTime = time - previousTime
+    previousTime = time;
+    if(mixer){
+        mixer.update(deltaTime*0.001)
+    }
+    if(model){
+        model.rotation.y += (cursor.x - model.rotation.y)*0.02
+    }
     //Animate the camra
     camera.position.y = - scrollY / sizes.height * 3.5 + cameraParameters.y
     // Render
     renderer.render(scene, camera)
 
     // Call tick again on the next frame
-    window.requestAnimationFrame(tick)
+    requestAnimationFrame(render)
 }
 
-tick()
+requestAnimationFrame(render)

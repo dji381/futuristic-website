@@ -63,7 +63,6 @@ p {
   outline: none;
   z-index: 1;
 }
-
 .section {
   height: 100vh;
   position: relative;
@@ -285,12 +284,9 @@ nav {
     transform: translateX(-55%);
 }
 .about-paralax{
-    font-size: 4vw;
+    font-size: 6vmin;
     padding: 6rem;
     font-family: 'Neotriad';
-}
-.about-paralax span {
-    opacity: 0;
 }
 
 /**
@@ -299,6 +295,8 @@ nav {
 ----------------------
 */
 .footer{
+    z-index: 3;
+    position: relative;
     background-color: var(--color-black-light);
 }
 .footer-container{
