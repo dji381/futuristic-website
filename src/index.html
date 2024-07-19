@@ -16,117 +16,131 @@
     <script type="module" src="./animation.js" defer></script>
   </head>
   <body>
-    <canvas class="webgl"></canvas>
-    <nav>
-      <div class="container navbar">
-        <a href="/">D.K</a>
-        <ul>
-          <li><a href="/">Project</a></li>
-          <li><a href="/">About</a></li>
-          <li><a href="/">Credit</a></li>
-          <li><a href="/" class="btn">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-    <section class="section">
-      <div class="container hero-container">
-        <div class="left">
-          <div class="content">
-            <h1><span class="outlined">Project</span> Futuristic</h1>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Sapiente, autem maxime praesentium odit consequuntur consectetur
-              quia minima eos ad laboriosam?
-            </p>
-            <a href="/" class="btn-lg">Project</a>
-          </div>
-          <p class="signature">ARTBYDK</p>
+    <div id="loader">
+      <div class="loading-wrapper">
+        <div class="loading-container">
+          <p>Loading</p>
+          <p id="loading">0%</p>
         </div>
-        <div class="right">
-          <img src="assets/images/symbol.svg" alt="symbol" />
+        <div id="progress-bar">
+          <div id="progress"></div>
+        </div>
+      </div>
+    </div>
+    <main id="main">
+      <canvas class="webgl"></canvas>
+      <nav>
+        <div class="container navbar">
+          <a href="/">D.K</a>
           <ul>
-            <li>
-              <a href="#"
-                ><img src="assets/images/twitter.svg" alt="twitter"
-              /></a>
-            </li>
-            <li>
-              <a href="#"
-                ><img src="assets/images/github.svg" alt="github.svg"
-              /></a>
-            </li>
-            <li>
-              <a href="#"
-                ><img src="assets/images/linkedin.svg" alt="linkedin.svg"
-              /></a>
-            </li>
-            <li>
-              <a href="#"
-                ><img src="assets/images/instagram.svg" alt="instagram.svg"
-              /></a>
-            </li>
+            <li><a href="/">Project</a></li>
+            <li><a href="/">About</a></li>
+            <li><a href="/">Credit</a></li>
+            <li><a href="/" class="btn">Contact</a></li>
           </ul>
         </div>
-      </div>
-    </section>
-    <section class="section padding">
-      <div class="container main-goal-container">
-        <div class="left">
-          <div class="title">
-            <h2>Main Goal</h2>
-            <h2 class="outlined offset">Main Goal</h2>
+      </nav>
+      <section class="section">
+        <div class="container hero-container">
+          <div class="left">
+            <div class="content">
+              <h1><span class="outlined">Project</span> Futuristic</h1>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Sapiente, autem maxime praesentium odit consequuntur consectetur
+                quia minima eos ad laboriosam?
+              </p>
+              <a href="/" class="btn-lg">Project</a>
+            </div>
+            <p class="signature">ARTBYDK</p>
           </div>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui
-            adipisci assumenda molestiae nisi necessitatibus soluta et dolor,
-            aperiam commodi laboriosam culpa quo explicabo nihil cupiditate
-            tempore iste molestias? Illo, laboriosam!
-          </p>
-          <a href="#" class="btn-lg">Contact</a>
+          <div class="right">
+            <img src="assets/images/symbol.svg" alt="symbol" />
+            <ul>
+              <li>
+                <a href="#"
+                  ><img src="assets/images/twitter.svg" alt="twitter"
+                /></a>
+              </li>
+              <li>
+                <a href="#"
+                  ><img src="assets/images/github.svg" alt="github.svg"
+                /></a>
+              </li>
+              <li>
+                <a href="#"
+                  ><img src="assets/images/linkedin.svg" alt="linkedin.svg"
+                /></a>
+              </li>
+              <li>
+                <a href="#"
+                  ><img src="assets/images/instagram.svg" alt="instagram.svg"
+                /></a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="right program-container">
-          <p class="programm-text">Running all programs <span>Pass</span></p>
-          <p class="programm-text">Running all programs <span>Pass</span></p>
-          <p class="programm-text">Running all programs <span>Pass</span></p>
-          <p class="programm-text">Running all programs <span>Fail</span></p>
-          <img src="assets/images/hacked.svg" alt="hacked icon" />
+      </section>
+      <section class="section padding">
+        <div class="container main-goal-container">
+          <div class="left">
+            <div class="title">
+              <h2>Main Goal</h2>
+              <h2 class="outlined offset">Main Goal</h2>
+            </div>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui
+              adipisci assumenda molestiae nisi necessitatibus soluta et dolor,
+              aperiam commodi laboriosam culpa quo explicabo nihil cupiditate
+              tempore iste molestias? Illo, laboriosam!
+            </p>
+            <a href="#" class="btn-lg">Contact</a>
+          </div>
+          <div class="right program-container">
+            <p class="programm-text">Running all programs <span>Pass</span></p>
+            <p class="programm-text">Running all programs <span>Pass</span></p>
+            <p class="programm-text">Running all programs <span>Pass</span></p>
+            <p class="programm-text">Running all programs <span>Fail</span></p>
+            <img src="assets/images/hacked.svg" alt="hacked icon" />
+          </div>
         </div>
-      </div>
-    </section>
-    <section class="section padding">
-      <div class="container about-container">
-        <div class="title">
-          <h2>About</h2>
-          <h2 class="outlined offset">About</h2>
+      </section>
+      <section class="section padding">
+        <div class="container about-container">
+          <div class="title">
+            <h2>About</h2>
+            <h2 class="outlined offset">About</h2>
+          </div>
+          <div class="about-content">
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque odit
+              suscipit consequuntur obcaecati quas debitis facere culpa distinctio
+              ad esse architecto rem hic, autem eos enim odio sapiente eveniet
+              labore. Possimus quo quam itaque aperiam voluptas maxime, quis
+              voluptatibus veniam, enim, hic atque dolorum similique nobis nihil
+              dignissimos. Vero illum voluptatem earum sapiente eos magni aliquid,
+              suscipit ipsa! Neque aliquid minima nulla minus laborum quam
+              quisquam reiciendis ea quasi deleniti.
+            </p>
+          </div>
+          <div class="about-paralax">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates voluptas perspiciatis dolorem neque assumenda error veritatis aliquid, nostrum cum officiis.</p>
+          </div>
         </div>
-        <div class="about-content">
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque odit
-            suscipit consequuntur obcaecati quas debitis facere culpa distinctio
-            ad esse architecto rem hic, autem eos enim odio sapiente eveniet
-            labore. Possimus quo quam itaque aperiam voluptas maxime, quis
-            voluptatibus veniam, enim, hic atque dolorum similique nobis nihil
-            dignissimos. Vero illum voluptatem earum sapiente eos magni aliquid,
-            suscipit ipsa! Neque aliquid minima nulla minus laborum quam
-            quisquam reiciendis ea quasi deleniti.
-          </p>
+      </section>
+      <footer class="section footer">
+        <div class="container footer-container">
+          <h2 class="outlined">Let's work <span>Together</span></h2>
+          <div class="footer-content">
+            <p>
+              <span>Availability</span>
+              Open for business and new collaboration From Q1 2024
+            </p>
+            <a href="#" class="btn-lg-white">Contact</a>
+          </div>
         </div>
-        <div class="about-paralax">
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates voluptas perspiciatis dolorem neque assumenda error veritatis aliquid, nostrum cum officiis.</p>
-        </div>
-      </div>
-    </section>
-    <footer class="section footer">
-      <div class="container footer-container">
-        <h2 class="outlined">Let's work <span>Together</span></h2>
-        <div class="footer-content">
-          <p>
-            <span>Availability</span>
-            Open for business and new collaboration From Q1 2024
-          </p>
-          <a href="#" class="btn-lg-white">Contact</a>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </main>
+  
   </body>
 </html>
