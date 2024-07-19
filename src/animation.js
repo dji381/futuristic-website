@@ -5,25 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
  * GSAP
  */
 gsap.registerPlugin(ScrollTrigger);
-// Create the ScrollTrigger
-ScrollTrigger.create({
-    trigger: ".about-container",
-    start: "top top",
-    onEnter: () => {
-        gsap.set(".webgl", {
-            position: "absolute",
-            top: "0px",
-            left: "0px"
-        });
-    },
-    onLeaveBack: () => {
-        gsap.set(".webgl", {
-            position: "fixed",
-            top: "10px",
-            left: "10px"
-        });
-    }
-});
  // Split text into words and wrap each word in a span
  const text = document.querySelector('.about-paralax p');
  text.innerHTML = text.textContent.split(' ').map(word => `<span>${word}</span>`).join(' ');

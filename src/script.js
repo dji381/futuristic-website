@@ -6,7 +6,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
  * Debug
  */
 const gui = new GUI()
-gui.hide();
+// gui.hide();
 const parameters = {
     materialColor: '#ffeded'
 }
@@ -31,7 +31,7 @@ const scene = new THREE.Scene()
 let mixer;
 let model;
 const gltfLoader = new GLTFLoader()
-gltfLoader.load('/models/robot/scene.gltf',(gltf)=>{
+gltfLoader.load('/models/robot/scene.gltf', (gltf)=>{
     console.log(gltf)
     gltf.scene.rotation.y = Math.PI * 0.15
     gltf.scene.position.x = 0.5
@@ -107,6 +107,12 @@ const sizes = {
     height: window.innerHeight
 }
 
+const sections = document.querySelectorAll('section')
+let sectionsHeigth = 0;
+sections.forEach((section)=>{
+    sectionsHeigth += parseInt(section.offsetHeight)
+})
+sectionsHeigth = sectionsHeigth / sections.length
 window.addEventListener('resize', () =>
 {
     // Update sizes
@@ -135,6 +141,16 @@ const cameraParameters = {
     y: 4.5,
     z: 8
 };
+if(window.innerWidth < 1024 && window.innerWidth > 650){
+    cameraParameters.x = -1;
+    cameraParameters.y = 2;
+    cameraParameters.z = 16;
+}
+if(window.innerWidth < 650){
+    cameraParameters.x = 0;
+    cameraParameters.y = 4;
+    cameraParameters.z = 6;
+}
 const camera = new THREE.PerspectiveCamera(35, sizes.width / sizes.height, 0.1, 100)
 camera.position.z = cameraParameters.z
 camera.position.y = cameraParameters.y
@@ -173,7 +189,8 @@ window.addEventListener('scroll',()=>{
 })
 //parallax
 const cursor = {
-
+    x:0,
+    y:0
 }
 window.addEventListener('mousemove',(e)=>{
     cursor.x = e.clientX / sizes.width - 0.5
@@ -192,14 +209,14 @@ const render = (time) =>
         mixer.update(deltaTime*0.001)
     }
     if(model){
-        model.rotation.y += (cursor.x - model.rotation.y)*0.02
+        model.rotation.y += (parseFloat(cursor.x) - model.rotation.y)*0.02
     }
     //Animate the camra
-    camera.position.y = - scrollY / sizes.height * 3.5 + cameraParameters.y
+    camera.position.y = - scrollY / sectionsHeigth * 3.5 + cameraParameters.y
     // Render
     renderer.render(scene, camera)
 
-    // Call tick again on the next frame
+    // Call render again on the next frame
     requestAnimationFrame(render)
 }
 
