@@ -43,22 +43,24 @@ gltfLoader.load(
     action.play();
   },
   (xhr) => {
-    let percent = 0;
-    const tl = gsap.timeline({
-      onUpdate: () => {
-        percent = (tl.progress() * 100).toFixed();
-        loadingTextElement.textContent = `${percent}%`;
-      },
-    });
-    tl.to(progress, {
+    let progressPercent = {
+      value : 0
+    }
+    const tl = gsap.timeline();
+    tl.to(progressPercent,{
+      duration: 2,
+      value: 100,
+      onUpdate: ()=> loadingTextElement.innerText = `${Math.round(progressPercent.value)} %`
+    })
+    .to(progress, {
       width: '100%',
       duration: 2,
-    })
+    },"<")
     .to(loaderDiv, {
         opacity: 0,
         duration: 1,
         onComplete: () => (loaderDiv.style.display = "none"),
-      });
+      },"+=0.5");
   },
   (error) => {
     console.error("An error happened", error);
