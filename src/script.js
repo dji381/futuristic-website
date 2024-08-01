@@ -2,6 +2,8 @@ import * as THREE from "three";
 import GUI from "lil-gui";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { gsap } from "gsap";
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
+
 /**
  * Debug
  */
@@ -67,112 +69,14 @@ gltfLoader.load(
   }
 );
 
-/**
- * Lights
- */
+// Base environment map
+const rgbeLoader = new RGBELoader()
 
-// Ambient light
-const ambientLight = new THREE.AmbientLight("#ffffff", 2);
-scene.add(ambientLight);
-
-const directionalLight = new THREE.DirectionalLight(0xffffff, 5);
-scene.add(directionalLight);
-
-const directionalLightParameters = {
-  x: 0,
-  y: -2,
-  z: 3,
-  rotationX: 1,
-  rotationY: 0,
-  rotationZ: 0,
-  color: "#ffffff",
-};
-const directionalLightFolder = gui.addFolder("Directional Light");
-directionalLight.position.y = directionalLightParameters.y;
-directionalLight.position.z = directionalLightParameters.z;
-
-directionalLight.rotation.x = directionalLightParameters.rotationX;
-//directional light gui position
-directionalLightFolder
-  .add(directionalLightParameters, "x")
-  .step(1)
-  .min(-20)
-  .max(20)
-  .onChange(() => {
-    directionalLight.position.set(
-      directionalLightParameters.x,
-      directionalLightParameters.y,
-      directionalLightParameters.z
-    );
-  });
-directionalLightFolder
-  .add(directionalLightParameters, "y")
-  .step(1)
-  .min(-20)
-  .max(20)
-  .onChange(() => {
-    directionalLight.position.set(
-      directionalLightParameters.x,
-      directionalLightParameters.y,
-      directionalLightParameters.z
-    );
-  });
-directionalLightFolder
-  .add(directionalLightParameters, "z")
-  .step(1)
-  .min(-20)
-  .max(20)
-  .onChange(() => {
-    directionalLight.position.set(
-      directionalLightParameters.x,
-      directionalLightParameters.y,
-      directionalLightParameters.z
-    );
-  });
-
-//directionnal light gui rotation
-directionalLightFolder
-  .add(directionalLightParameters, "rotationX")
-  .step(1)
-  .min(-20)
-  .max(20)
-  .onChange(() => {
-    directionalLight.rotation.set(
-      directionalLightParameters.rotationX,
-      directionalLightParameters.rotationY,
-      directionalLightParameters.rotationZ
-    );
-  });
-directionalLightFolder
-  .add(directionalLightParameters, "rotationY")
-  .step(1)
-  .min(-20)
-  .max(20)
-  .onChange(() => {
-    directionalLight.rotation.set(
-      directionalLightParameters.rotationX,
-      directionalLightParameters.rotationY,
-      directionalLightParameters.rotationZ
-    );
-  });
-directionalLightFolder
-  .add(directionalLightParameters, "rotationZ")
-  .step(1)
-  .min(-20)
-  .max(20)
-  .onChange(() => {
-    directionalLight.rotation.set(
-      directionalLightParameters.rotationX,
-      directionalLightParameters.rotationY,
-      directionalLightParameters.rotationZ
-    );
-  });
-
-directionalLightFolder
-  .addColor(directionalLightParameters, "color")
-  .onChange(() => {
-    directionalLight.color.set(directionalLightParameters.color);
-  });
+rgbeLoader.load('/environmentMaps/0/1k.hdr', (environmentMap) =>
+    {
+        environmentMap.mapping = THREE.EquirectangularReflectionMapping,
+        scene.environment = environmentMap
+    })
 
 /**
  * Sizes
